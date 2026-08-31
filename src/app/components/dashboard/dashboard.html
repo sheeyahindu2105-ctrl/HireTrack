@@ -241,10 +241,13 @@
 
               }
 
+
+              <!-- CORRECT EDIT ROUTE -->
               <a
                 [routerLink]="[
-                  '/applications/edit',
-                  application.id
+                  '/applications',
+                  application.id,
+                  'edit'
                 ]"
                 class="btn btn-sm btn-outline-dark mt-2"
               >
@@ -445,13 +448,14 @@
                 </td>
 
 
-                <!-- Edit -->
+                <!-- EDIT -->
                 <td class="text-end">
 
                   <a
                     [routerLink]="[
-                      '/applications/edit',
-                      application.id
+                      '/applications',
+                      application.id,
+                      'edit'
                     ]"
                     class="btn btn-sm btn-outline-dark edit-btn"
                   >

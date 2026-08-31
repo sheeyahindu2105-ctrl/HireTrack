@@ -1,20 +1,25 @@
 <main class="container py-5">
 
-  <!-- ==================== PAGE HEADER ==================== -->
-  <div class="mb-4">
+  <!-- PAGE HEADER -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold mb-2">Applications</h1>
 
-    <h1 class="fw-bold mb-2">
-      Applications
-    </h1>
+      <p class="text-muted mb-0">
+        Track and manage all your job and internship applications.
+      </p>
+    </div>
 
-    <p class="text-muted mb-0">
-      Track and manage all your job and internship applications.
-    </p>
-
+    <a
+      routerLink="/applications/new"
+      class="btn btn-dark"
+    >
+      + Add Application
+    </a>
   </div>
 
 
-  <!-- ==================== FILTERS ==================== -->
+  <!-- FILTERS -->
   <div class="card border-0 shadow-sm mb-4">
 
     <div class="card-body">
@@ -58,25 +63,11 @@
             [(ngModel)]="selectedStatus"
           >
 
-            <option value="All">
-              All
-            </option>
-
-            <option value="Applied">
-              Applied
-            </option>
-
-            <option value="Interview">
-              Interview
-            </option>
-
-            <option value="Selected">
-              Selected
-            </option>
-
-            <option value="Rejected">
-              Rejected
-            </option>
+            <option value="All">All</option>
+            <option value="Applied">Applied</option>
+            <option value="Interview">Interview</option>
+            <option value="Selected">Selected</option>
+            <option value="Rejected">Rejected</option>
 
           </select>
 
@@ -99,24 +90,16 @@
             [(ngModel)]="selectedType"
           >
 
-            <option value="All">
-              All
-            </option>
-
-            <option value="Internship">
-              Internship
-            </option>
-
-            <option value="Full-time">
-              Full-time
-            </option>
+            <option value="All">All</option>
+            <option value="Internship">Internship</option>
+            <option value="Full-time">Full-time</option>
 
           </select>
 
         </div>
 
 
-        <!-- Clear Filters -->
+        <!-- Clear -->
         <div class="col-md-4 col-lg-2 d-flex align-items-end">
 
           <button
@@ -136,12 +119,12 @@
   </div>
 
 
-  <!-- ==================== APPLICATIONS ==================== -->
+  <!-- APPLICATIONS -->
   <div class="card border-0 shadow-sm">
 
     <div class="card-body">
 
-      <!-- Section Header -->
+      <!-- HEADER -->
       <div
         class="d-flex justify-content-between align-items-center mb-3"
       >
@@ -157,7 +140,7 @@
       </div>
 
 
-      <!-- ==================== EMPTY STATE ==================== -->
+      <!-- EMPTY STATE -->
       @if (filteredApplications.length === 0) {
 
         <div class="empty-state text-center py-5">
@@ -187,7 +170,7 @@
       }
 
 
-      <!-- ==================== APPLICATION TABLE ==================== -->
+      <!-- TABLE -->
       @if (filteredApplications.length > 0) {
 
         <div class="table-responsive">
@@ -198,37 +181,14 @@
 
               <tr>
 
-                <th>
-                  Company
-                </th>
-
-                <th>
-                  Role
-                </th>
-
-                <th>
-                  Location
-                </th>
-
-                <th>
-                  Type
-                </th>
-
-                <th>
-                  Status
-                </th>
-
-                <th>
-                  Applied Date
-                </th>
-
-                <th>
-                  Interview
-                </th>
-
-                <th class="text-end">
-                  Action
-                </th>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Applied Date</th>
+                <th>Interview</th>
+                <th class="text-end">Action</th>
 
               </tr>
 
@@ -246,11 +206,9 @@
 
                   <!-- Company -->
                   <td>
-
                     <strong>
                       {{ application.company }}
                     </strong>
-
                   </td>
 
 
@@ -303,27 +261,21 @@
                       <div class="interview-info">
 
                         @if (application.interviewDate) {
-
                           <div>
                             📅 {{ application.interviewDate }}
                           </div>
-
                         }
 
                         @if (application.interviewTime) {
-
                           <div>
                             🕐 {{ application.interviewTime }}
                           </div>
-
                         }
 
                         @if (application.interviewMode) {
-
                           <div>
                             💻 {{ application.interviewMode }}
                           </div>
-
                         }
 
                         @if (
@@ -351,26 +303,24 @@
                   </td>
 
 
-                  <!-- Actions -->
+                  <!-- ACTIONS -->
                   <td class="text-end">
 
                     <div
                       class="d-flex justify-content-end gap-2"
                     >
 
-                      <!-- Edit -->
-                      <a
-                        [routerLink]="[
-                          '/applications/edit',
-                          application.id
-                        ]"
+                      <!-- EDIT -->
+                      <button
+                        type="button"
                         class="btn btn-sm btn-outline-dark"
+                        (click)="editApplication(application.id)"
                       >
                         Edit
-                      </a>
+                      </button>
 
 
-                      <!-- Delete -->
+                      <!-- DELETE -->
                       <button
                         type="button"
                         class="btn btn-sm btn-outline-danger"

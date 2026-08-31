@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import type { Application } from '../../models/application.model';
@@ -9,8 +9,7 @@ import { ApplicationService } from '../../services/application';
   selector: 'app-applications',
   standalone: true,
   imports: [
-    FormsModule,
-    RouterLink
+    FormsModule
   ],
   templateUrl: './applications.html',
   styleUrl: './applications.css'
@@ -18,6 +17,7 @@ import { ApplicationService } from '../../services/application';
 export class Applications implements OnInit {
 
   private applicationService = inject(ApplicationService);
+  private router = inject(Router);
 
   applications: Application[] = [];
 
@@ -38,13 +38,15 @@ export class Applications implements OnInit {
   }
 
 
-  // Filtered applications
+  // =========================
+  // FILTERED APPLICATIONS
+  // =========================
+
   get filteredApplications(): Application[] {
 
-    const search =
-      this.searchTerm
-        .trim()
-        .toLowerCase();
+    const search = this.searchTerm
+      .trim()
+      .toLowerCase();
 
     return this.applications.filter(
       (application: Application) => {
@@ -86,19 +88,25 @@ export class Applications implements OnInit {
   }
 
 
-  // Edit application
+  // =========================
+  // EDIT APPLICATION
+  // =========================
+
   editApplication(id: number): void {
 
-    // Route: /applications/:id/edit
-    // Example: /applications/5/edit
-
-    window.location.href =
-      `/applications/${id}/edit`;
+    this.router.navigate([
+      '/applications',
+      id,
+      'edit'
+    ]);
 
   }
 
 
-  // Delete application
+  // =========================
+  // DELETE APPLICATION
+  // =========================
+
   deleteApplication(id: number): void {
 
     const confirmed = window.confirm(
@@ -114,7 +122,10 @@ export class Applications implements OnInit {
   }
 
 
-  // Clear filters
+  // =========================
+  // CLEAR FILTERS
+  // =========================
+
   clearFilters(): void {
 
     this.searchTerm = '';
@@ -126,7 +137,10 @@ export class Applications implements OnInit {
   }
 
 
-  // Status badge class
+  // =========================
+  // STATUS CLASS
+  // =========================
+
   getStatusClass(
     status: Application['status']
   ): string {
