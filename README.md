@@ -1,59 +1,79 @@
-# Frontend
+# HireTrack 💼
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.6.
+HireTrack is a modern Angular web application designed to help users
+track and manage their job and internship applications in one place.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Features
 
-```bash
-ng serve
-```
+### Dashboard
+- Total applications count
+- Applied applications count
+- Interview count
+- Selected applications count
+- Upcoming interviews
+- Recent applications
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Application Management
+- Add new applications
+- Edit existing applications
+- Delete applications
+- Search applications
+- Filter by application status
+- Filter by application type
 
-## Code scaffolding
+### Interview Management
+- Track interview applications
+- Add interview date
+- Add interview time
+- Select interview mode
+- Add interview preparation notes
+- View upcoming interviews
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Data Persistence
+- Application data is stored using browser LocalStorage
+- Data remains available after refreshing the browser
 
-```bash
-ng generate component component-name
-```
+### Responsive Design
+- Desktop-friendly interface
+- Mobile-responsive navbar
+- Responsive dashboard cards
+- Responsive application and interview sections
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🛠️ Technologies Used
 
-## Building
+- Angular
+- TypeScript
+- HTML5
+- CSS3
+- Bootstrap
+- RxJS
+- LocalStorage
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 📁 Project Structure
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```text
+src/
+└── app/
+    ├── components/
+    │   ├── application-card/
+    │   ├── application-form/
+    │   ├── applications/
+    │   ├── dashboard/
+    │   ├── interviews/
+    │   └── navbar/
+    │
+    ├── models/
+    │   └── application.model.ts
+    │
+    ├── services/
+    │   └── application.ts
+    │
+    ├── app.config.ts
+    ├── app.routes.ts
+    └── app.ts

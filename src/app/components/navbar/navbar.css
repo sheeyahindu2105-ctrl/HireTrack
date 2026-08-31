@@ -1,0 +1,162 @@
+.navbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* Logo */
+
+.navbar-brand {
+  color: #111827;
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  color: #111827;
+}
+
+
+/* Navigation */
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.nav-link {
+  color: #6c757d;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.6rem 0.8rem;
+  border-radius: 7px;
+  transition: 0.2s ease;
+}
+
+
+.nav-link:hover {
+  color: #111827;
+  background: #f8f9fa;
+}
+
+
+.nav-link.active {
+  color: #111827;
+  background: #f1f3f5;
+  font-weight: 700;
+}
+
+
+/* Add Application */
+
+.add-application-btn {
+  color: #ffffff;
+  background: #212529;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  margin-left: 0.5rem;
+  transition: 0.2s ease;
+}
+
+
+.add-application-btn:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+/* Mobile button */
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #dee2e6;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #212529;
+  margin: 5px auto;
+  transition: 0.2s ease;
+}
+
+
+/* ==================== MOBILE ==================== */
+
+@media (max-width: 767px) {
+
+  .navbar-container {
+    position: relative;
+    min-height: 64px;
+  }
+
+
+  .menu-toggle {
+    display: block;
+  }
+
+
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0;
+
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-top: 0;
+
+    padding: 0.75rem;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+
+  .navbar-menu.show {
+    display: flex;
+  }
+
+
+  .nav-link {
+    width: 100%;
+    padding: 0.8rem;
+  }
+
+
+  .add-application-btn {
+    margin: 0.5rem 0 0;
+    text-align: center;
+  }
+
+}

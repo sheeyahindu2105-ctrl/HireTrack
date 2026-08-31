@@ -1,0 +1,378 @@
+<main class="container py-5">
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <div class="mb-5">
+
+    <h1 class="fw-bold mb-2">
+      Interviews
+    </h1>
+
+    <p class="text-muted mb-0">
+      Keep track of your upcoming and ongoing interviews.
+    </p>
+
+  </div>
+
+
+  <!-- ==================== INTERVIEW SUMMARY ==================== -->
+  <div class="row g-4 mb-5">
+
+    <!-- Total Interviews -->
+    <div class="col-12 col-md-6">
+
+      <div class="interview-stat-card h-100">
+
+        <div class="stat-content">
+
+          <div>
+
+            <p class="stat-label">
+              Total Interviews
+            </p>
+
+            <h2 class="stat-number">
+              {{ totalInterviews }}
+            </h2>
+
+          </div>
+
+          <div class="stat-icon">
+            🎯
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Scheduled Interviews -->
+    <div class="col-12 col-md-6">
+
+      <div class="interview-stat-card h-100">
+
+        <div class="stat-content">
+
+          <div>
+
+            <p class="stat-label">
+              Scheduled Interviews
+            </p>
+
+            <h2 class="stat-number">
+              {{ scheduledInterviews }}
+            </h2>
+
+          </div>
+
+          <div class="stat-icon">
+            📅
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================== EMPTY STATE ==================== -->
+  @if (applications.length === 0) {
+
+    <div class="interviews-section">
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          📅
+        </div>
+
+        <h4 class="fw-bold mt-3">
+          No interviews yet
+        </h4>
+
+        <p class="text-muted mb-3">
+          Applications with an Interview status will appear here.
+        </p>
+
+        <a
+          routerLink="/applications"
+          class="btn btn-outline-dark"
+        >
+          View Applications
+        </a>
+
+      </div>
+
+    </div>
+
+  }
+
+
+  <!-- ==================== INTERVIEW CARDS ==================== -->
+  @if (applications.length > 0) {
+
+    <div class="interviews-section">
+
+      <div
+        class="d-flex justify-content-between align-items-center mb-4"
+      >
+
+        <div>
+
+          <h3 class="section-title">
+            Your Interviews
+          </h3>
+
+          <p class="section-subtitle">
+            Review your interview schedule and preparation notes.
+          </p>
+
+        </div>
+
+        <span class="interview-count">
+          {{ applications.length }}
+          {{ applications.length === 1 ? 'Interview' : 'Interviews' }}
+        </span>
+
+      </div>
+
+
+      <div class="row g-4">
+
+        @for (
+          application of applications;
+          track application.id
+        ) {
+
+          <div class="col-12 col-md-6 col-lg-4">
+
+            <div class="interview-card h-100">
+
+              <div class="card-body">
+
+                <!-- ==================== COMPANY ==================== -->
+                <div class="company-header">
+
+                  <div class="company-info">
+
+                    <div class="company-avatar">
+                      {{ application.company.charAt(0).toUpperCase() }}
+                    </div>
+
+                    <div>
+
+                      <h5 class="company-name">
+                        {{ application.company }}
+                      </h5>
+
+                      <p class="role-name">
+                        {{ application.role }}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+
+                  <span class="status-badge">
+                    Interview
+                  </span>
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- ==================== LOCATION ==================== -->
+                <div class="detail-row">
+
+                  <div class="detail-icon">
+                    📍
+                  </div>
+
+                  <div class="detail-content">
+
+                    <small>
+                      Location
+                    </small>
+
+                    <div>
+                      {{ application.location }}
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <!-- ==================== TYPE ==================== -->
+                <div class="detail-row">
+
+                  <div class="detail-icon">
+                    💼
+                  </div>
+
+                  <div class="detail-content">
+
+                    <small>
+                      Application Type
+                    </small>
+
+                    <div>
+                      {{ application.type }}
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <!-- ==================== INTERVIEW DATE ==================== -->
+                <div class="detail-row">
+
+                  <div class="detail-icon">
+                    📅
+                  </div>
+
+                  <div class="detail-content">
+
+                    <small>
+                      Interview Date
+                    </small>
+
+                    @if (application.interviewDate) {
+
+                      <div class="fw-semibold">
+                        {{ application.interviewDate }}
+                      </div>
+
+                    } @else {
+
+                      <div class="not-scheduled">
+                        Not scheduled
+                      </div>
+
+                    }
+
+                  </div>
+
+                </div>
+
+
+                <!-- ==================== INTERVIEW TIME ==================== -->
+                <div class="detail-row">
+
+                  <div class="detail-icon">
+                    🕐
+                  </div>
+
+                  <div class="detail-content">
+
+                    <small>
+                      Interview Time
+                    </small>
+
+                    @if (application.interviewTime) {
+
+                      <div class="fw-semibold">
+                        {{ application.interviewTime }}
+                      </div>
+
+                    } @else {
+
+                      <div class="not-scheduled">
+                        Not scheduled
+                      </div>
+
+                    }
+
+                  </div>
+
+                </div>
+
+
+                <!-- ==================== INTERVIEW MODE ==================== -->
+                <div class="detail-row">
+
+                  <div class="detail-icon">
+                    💻
+                  </div>
+
+                  <div class="detail-content">
+
+                    <small>
+                      Interview Mode
+                    </small>
+
+                    @if (application.interviewMode) {
+
+                      <div class="fw-semibold">
+                        {{ application.interviewMode }}
+                      </div>
+
+                    } @else {
+
+                      <div class="not-scheduled">
+                        Not specified
+                      </div>
+
+                    }
+
+                  </div>
+
+                </div>
+
+
+                <!-- ==================== NOTES ==================== -->
+                @if (application.interviewNotes) {
+
+                  <div class="notes-box">
+
+                    <div class="notes-title">
+                      📝 Interview Notes
+                    </div>
+
+                    <p class="notes-text">
+                      {{ application.interviewNotes }}
+                    </p>
+
+                  </div>
+
+                }
+
+
+                <!-- ==================== EDIT BUTTON ==================== -->
+                <div class="mt-4">
+
+                  <a
+                    [routerLink]="[
+                      '/applications/edit',
+                      application.id
+                    ]"
+                    class="btn btn-dark w-100"
+                  >
+                    Edit Interview Details
+                  </a>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  }
+
+</main>

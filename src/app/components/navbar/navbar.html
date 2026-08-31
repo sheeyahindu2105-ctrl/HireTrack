@@ -1,0 +1,81 @@
+<nav class="navbar">
+
+  <div class="container navbar-container">
+
+    <!-- Logo -->
+    <a
+      routerLink="/"
+      class="navbar-brand"
+      (click)="closeMenu()"
+    >
+      HireTrack
+    </a>
+
+
+    <!-- Mobile Menu Button -->
+    <button
+      type="button"
+      class="menu-toggle"
+      [class.open]="isMenuOpen"
+      (click)="toggleMenu()"
+      aria-label="Toggle navigation"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+
+    <!-- Navigation -->
+    <div
+      class="navbar-menu"
+      [class.show]="isMenuOpen"
+    >
+
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        (click)="closeMenu()"
+      >
+        Dashboard
+      </a>
+
+
+      <a
+        routerLink="/applications"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        (click)="closeMenu()"
+      >
+        Applications
+      </a>
+
+
+      <a
+        routerLink="/interviews"
+        routerLinkActive="active"
+        class="nav-link"
+        (click)="closeMenu()"
+      >
+        Interviews
+      </a>
+
+
+      <a
+        routerLink="/applications/new"
+        class="add-application-btn"
+        (click)="closeMenu()"
+      >
+        + Add Application
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>

@@ -1,0 +1,344 @@
+/* ===========================
+   DASHBOARD HEADER
+=========================== */
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboard-header h1 {
+  color: #111827;
+}
+
+.add-btn {
+  white-space: nowrap;
+}
+
+
+/* ===========================
+   STAT CARDS
+=========================== */
+
+.stat-card {
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.stat-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+
+/* Different card backgrounds */
+
+.total-card {
+  background: #f8f9fa;
+}
+
+.applied-card {
+  background: #f8f9fa;
+}
+
+.interview-card {
+  background: #fffaf0;
+}
+
+.selected-card {
+  background: #f6fff8;
+}
+
+
+/* ===========================
+   DASHBOARD SECTIONS
+=========================== */
+
+.dashboard-section {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1.5rem;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.section-subtitle {
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+
+.empty-state {
+  text-align: center;
+  padding: 3.5rem 1rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+}
+
+
+/* ===========================
+   UPCOMING INTERVIEWS
+=========================== */
+
+.interview-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.interview-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.interview-item:last-child {
+  border-bottom: 0;
+}
+
+.interview-company {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.company-avatar {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #212529;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.company-name {
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+
+.role-name {
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.location-text {
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.interview-details {
+  text-align: right;
+  min-width: 180px;
+}
+
+.interview-date {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.interview-meta {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin-top: 0.15rem;
+}
+
+
+/* ===========================
+   APPLICATION TABLE
+=========================== */
+
+.applications-table {
+  white-space: nowrap;
+}
+
+.applications-table thead th {
+  color: #6c757d;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-bottom: 1px solid #dee2e6;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.applications-table tbody td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.applications-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.company-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.small-avatar {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #212529;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+
+/* ===========================
+   BADGES
+=========================== */
+
+.type-badge {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: #f1f3f5;
+  color: #495057;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-applied {
+  background: #e7f1ff;
+  color: #0d6efd;
+}
+
+.status-interview {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-selected {
+  background: #d1e7dd;
+  color: #146c43;
+}
+
+.status-rejected {
+  background: #f8d7da;
+  color: #842029;
+}
+
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.edit-btn {
+  white-space: nowrap;
+}
+
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .section-header {
+    align-items: flex-start;
+  }
+
+  .interview-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .interview-details {
+    width: 100%;
+    text-align: left;
+    min-width: auto;
+  }
+
+  .dashboard-section {
+    padding: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem;
+  }
+
+}

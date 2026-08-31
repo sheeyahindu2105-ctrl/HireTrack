@@ -1,0 +1,477 @@
+<main class="container py-5">
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <div class="dashboard-header mb-5">
+
+    <div>
+      <h1 class="fw-bold mb-2">
+        Welcome to HireTrack 👋
+      </h1>
+
+      <p class="text-muted mb-0">
+        Manage your job and internship applications in one place.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- ==================== STATISTICS ==================== -->
+  <div class="row g-4 mb-5">
+
+    <!-- Total Applications -->
+    <div class="col-12 col-sm-6 col-lg-3">
+
+      <div class="stat-card total-card h-100">
+
+        <div class="stat-content">
+
+          <div>
+            <p class="stat-label">
+              Total Applications
+            </p>
+
+            <h2 class="stat-number">
+              {{ totalApplications }}
+            </h2>
+          </div>
+
+          <div class="stat-icon">
+            📋
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Applied -->
+    <div class="col-12 col-sm-6 col-lg-3">
+
+      <div class="stat-card applied-card h-100">
+
+        <div class="stat-content">
+
+          <div>
+            <p class="stat-label">
+              Applied
+            </p>
+
+            <h2 class="stat-number">
+              {{ applied }}
+            </h2>
+          </div>
+
+          <div class="stat-icon">
+            📤
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Interviews -->
+    <div class="col-12 col-sm-6 col-lg-3">
+
+      <div class="stat-card interview-card h-100">
+
+        <div class="stat-content">
+
+          <div>
+            <p class="stat-label">
+              Interviews
+            </p>
+
+            <h2 class="stat-number">
+              {{ interviews }}
+            </h2>
+          </div>
+
+          <div class="stat-icon">
+            🎯
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Selected -->
+    <div class="col-12 col-sm-6 col-lg-3">
+
+      <div class="stat-card selected-card h-100">
+
+        <div class="stat-content">
+
+          <div>
+            <p class="stat-label">
+              Selected
+            </p>
+
+            <h2 class="stat-number">
+              {{ selected }}
+            </h2>
+          </div>
+
+          <div class="stat-icon">
+            🎉
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================== UPCOMING INTERVIEWS ==================== -->
+  <section class="dashboard-section mb-5">
+
+    <div class="section-header">
+
+      <div>
+        <h3 class="section-title">
+          Upcoming Interviews
+        </h3>
+
+        <p class="section-subtitle">
+          Your scheduled interviews.
+        </p>
+      </div>
+
+      <a
+        routerLink="/interviews"
+        class="btn btn-outline-dark btn-sm"
+      >
+        View All
+      </a>
+
+    </div>
+
+
+    <!-- No Upcoming Interviews -->
+    @if (upcomingInterviews.length === 0) {
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          📅
+        </div>
+
+        <h5 class="fw-bold mt-3">
+          No upcoming interviews
+        </h5>
+
+        <p class="text-muted mb-0">
+          Scheduled interviews will appear here.
+        </p>
+
+      </div>
+
+    }
+
+
+    <!-- Upcoming Interview List -->
+    @if (upcomingInterviews.length > 0) {
+
+      <div class="interview-list">
+
+        @for (
+          application of upcomingInterviews;
+          track application.id
+        ) {
+
+          <div class="interview-item">
+
+            <!-- Company Information -->
+            <div class="interview-company">
+
+              <div class="company-avatar">
+                {{ application.company.charAt(0).toUpperCase() }}
+              </div>
+
+              <div>
+
+                <h5 class="company-name">
+                  {{ application.company }}
+                </h5>
+
+                <p class="role-name">
+                  {{ application.role }}
+                </p>
+
+                <span class="location-text">
+                  📍 {{ application.location }}
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- Interview Information -->
+            <div class="interview-details">
+
+              <div class="interview-date">
+                📅 {{ application.interviewDate }}
+              </div>
+
+              @if (application.interviewTime) {
+
+                <div class="interview-meta">
+                  🕐 {{ application.interviewTime }}
+                </div>
+
+              }
+
+              @if (application.interviewMode) {
+
+                <div class="interview-meta">
+                  💻 {{ application.interviewMode }}
+                </div>
+
+              }
+
+              <a
+                [routerLink]="[
+                  '/applications/edit',
+                  application.id
+                ]"
+                class="btn btn-sm btn-outline-dark mt-2"
+              >
+                View / Edit
+              </a>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  </section>
+
+
+  <!-- ==================== RECENT APPLICATIONS ==================== -->
+  <section class="dashboard-section">
+
+    <div class="section-header">
+
+      <div>
+        <h3 class="section-title">
+          Recent Applications
+        </h3>
+
+        <p class="section-subtitle">
+          Your latest job and internship applications.
+        </p>
+      </div>
+
+      <a
+        routerLink="/applications"
+        class="btn btn-outline-dark btn-sm"
+      >
+        View All
+      </a>
+
+    </div>
+
+
+    <!-- No Applications -->
+    @if (applications.length === 0) {
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          📋
+        </div>
+
+        <h5 class="fw-bold mt-3">
+          No applications yet
+        </h5>
+
+        <p class="text-muted mb-3">
+          Add your first job or internship application.
+        </p>
+
+        <a
+          routerLink="/applications/new"
+          class="btn btn-dark"
+        >
+          + Add Application
+        </a>
+
+      </div>
+
+    }
+
+
+    <!-- Applications Table -->
+    @if (applications.length > 0) {
+
+      <div class="table-responsive">
+
+        <table class="table applications-table align-middle mb-0">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Company
+              </th>
+
+              <th>
+                Role
+              </th>
+
+              <th>
+                Type
+              </th>
+
+              <th>
+                Status
+              </th>
+
+              <th>
+                Applied Date
+              </th>
+
+              <th class="text-end">
+                Action
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            @for (
+              application of applications.slice(-5).reverse();
+              track application.id
+            ) {
+
+              <tr>
+
+                <!-- Company -->
+                <td>
+
+                  <div class="company-cell">
+
+                    <div class="small-avatar">
+                      {{ application.company.charAt(0).toUpperCase() }}
+                    </div>
+
+                    <strong>
+                      {{ application.company }}
+                    </strong>
+
+                  </div>
+
+                </td>
+
+
+                <!-- Role -->
+                <td>
+                  {{ application.role }}
+                </td>
+
+
+                <!-- Type -->
+                <td>
+
+                  <span class="type-badge">
+                    {{ application.type }}
+                  </span>
+
+                </td>
+
+
+                <!-- Status -->
+                <td>
+
+                  @if (application.status === 'Applied') {
+
+                    <span class="status-badge status-applied">
+                      Applied
+                    </span>
+
+                  }
+
+                  @if (application.status === 'Interview') {
+
+                    <span class="status-badge status-interview">
+                      Interview
+                    </span>
+
+                  }
+
+                  @if (application.status === 'Selected') {
+
+                    <span class="status-badge status-selected">
+                      Selected
+                    </span>
+
+                  }
+
+                  @if (application.status === 'Rejected') {
+
+                    <span class="status-badge status-rejected">
+                      Rejected
+                    </span>
+
+                  }
+
+                </td>
+
+
+                <!-- Applied Date -->
+                <td>
+                  {{ application.appliedDate }}
+                </td>
+
+
+                <!-- Edit -->
+                <td class="text-end">
+
+                  <a
+                    [routerLink]="[
+                      '/applications/edit',
+                      application.id
+                    ]"
+                    class="btn btn-sm btn-outline-dark edit-btn"
+                  >
+                    Edit
+                  </a>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    }
+
+  </section>
+
+</main>

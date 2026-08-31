@@ -1,0 +1,402 @@
+<main class="container py-5">
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <div class="mb-4">
+
+    <h1 class="fw-bold mb-2">
+      Applications
+    </h1>
+
+    <p class="text-muted mb-0">
+      Track and manage all your job and internship applications.
+    </p>
+
+  </div>
+
+
+  <!-- ==================== FILTERS ==================== -->
+  <div class="card border-0 shadow-sm mb-4">
+
+    <div class="card-body">
+
+      <div class="row g-3">
+
+        <!-- Search -->
+        <div class="col-lg-6">
+
+          <label
+            for="search"
+            class="form-label fw-semibold"
+          >
+            Search Applications
+          </label>
+
+          <input
+            id="search"
+            type="text"
+            class="form-control"
+            [(ngModel)]="searchTerm"
+            placeholder="Search by company, role or location..."
+          />
+
+        </div>
+
+
+        <!-- Status -->
+        <div class="col-md-4 col-lg-2">
+
+          <label
+            for="status"
+            class="form-label fw-semibold"
+          >
+            Status
+          </label>
+
+          <select
+            id="status"
+            class="form-select"
+            [(ngModel)]="selectedStatus"
+          >
+
+            <option value="All">
+              All
+            </option>
+
+            <option value="Applied">
+              Applied
+            </option>
+
+            <option value="Interview">
+              Interview
+            </option>
+
+            <option value="Selected">
+              Selected
+            </option>
+
+            <option value="Rejected">
+              Rejected
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Type -->
+        <div class="col-md-4 col-lg-2">
+
+          <label
+            for="type"
+            class="form-label fw-semibold"
+          >
+            Type
+          </label>
+
+          <select
+            id="type"
+            class="form-select"
+            [(ngModel)]="selectedType"
+          >
+
+            <option value="All">
+              All
+            </option>
+
+            <option value="Internship">
+              Internship
+            </option>
+
+            <option value="Full-time">
+              Full-time
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Clear Filters -->
+        <div class="col-md-4 col-lg-2 d-flex align-items-end">
+
+          <button
+            type="button"
+            class="btn btn-outline-secondary w-100"
+            (click)="clearFilters()"
+          >
+            Clear Filters
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================== APPLICATIONS ==================== -->
+  <div class="card border-0 shadow-sm">
+
+    <div class="card-body">
+
+      <!-- Section Header -->
+      <div
+        class="d-flex justify-content-between align-items-center mb-3"
+      >
+
+        <h4 class="fw-bold mb-0">
+          All Applications
+        </h4>
+
+        <span class="text-muted">
+          {{ filteredApplications.length }} application(s)
+        </span>
+
+      </div>
+
+
+      <!-- ==================== EMPTY STATE ==================== -->
+      @if (filteredApplications.length === 0) {
+
+        <div class="empty-state text-center py-5">
+
+          <div class="empty-icon">
+            📋
+          </div>
+
+          <h5 class="fw-bold mt-3">
+            No applications found
+          </h5>
+
+          <p class="text-muted mb-3">
+            Try changing your search or filters.
+          </p>
+
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="clearFilters()"
+          >
+            Clear Filters
+          </button>
+
+        </div>
+
+      }
+
+
+      <!-- ==================== APPLICATION TABLE ==================== -->
+      @if (filteredApplications.length > 0) {
+
+        <div class="table-responsive">
+
+          <table class="table align-middle mb-0">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Company
+                </th>
+
+                <th>
+                  Role
+                </th>
+
+                <th>
+                  Location
+                </th>
+
+                <th>
+                  Type
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Applied Date
+                </th>
+
+                <th>
+                  Interview
+                </th>
+
+                <th class="text-end">
+                  Action
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              @for (
+                application of filteredApplications;
+                track application.id
+              ) {
+
+                <tr>
+
+                  <!-- Company -->
+                  <td>
+
+                    <strong>
+                      {{ application.company }}
+                    </strong>
+
+                  </td>
+
+
+                  <!-- Role -->
+                  <td>
+                    {{ application.role }}
+                  </td>
+
+
+                  <!-- Location -->
+                  <td>
+                    {{ application.location }}
+                  </td>
+
+
+                  <!-- Type -->
+                  <td>
+
+                    <span class="type-badge">
+                      {{ application.type }}
+                    </span>
+
+                  </td>
+
+
+                  <!-- Status -->
+                  <td>
+
+                    <span
+                      class="status-badge"
+                      [class]="getStatusClass(application.status)"
+                    >
+                      {{ application.status }}
+                    </span>
+
+                  </td>
+
+
+                  <!-- Applied Date -->
+                  <td>
+                    {{ application.appliedDate }}
+                  </td>
+
+
+                  <!-- Interview -->
+                  <td>
+
+                    @if (application.status === 'Interview') {
+
+                      <div class="interview-info">
+
+                        @if (application.interviewDate) {
+
+                          <div>
+                            📅 {{ application.interviewDate }}
+                          </div>
+
+                        }
+
+                        @if (application.interviewTime) {
+
+                          <div>
+                            🕐 {{ application.interviewTime }}
+                          </div>
+
+                        }
+
+                        @if (application.interviewMode) {
+
+                          <div>
+                            💻 {{ application.interviewMode }}
+                          </div>
+
+                        }
+
+                        @if (
+                          !application.interviewDate &&
+                          !application.interviewTime &&
+                          !application.interviewMode
+                        ) {
+
+                          <span class="text-muted">
+                            Not added
+                          </span>
+
+                        }
+
+                      </div>
+
+                    } @else {
+
+                      <span class="text-muted">
+                        —
+                      </span>
+
+                    }
+
+                  </td>
+
+
+                  <!-- Actions -->
+                  <td class="text-end">
+
+                    <div
+                      class="d-flex justify-content-end gap-2"
+                    >
+
+                      <!-- Edit -->
+                      <a
+                        [routerLink]="[
+                          '/applications/edit',
+                          application.id
+                        ]"
+                        class="btn btn-sm btn-outline-dark"
+                      >
+                        Edit
+                      </a>
+
+
+                      <!-- Delete -->
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-danger"
+                        (click)="deleteApplication(application.id)"
+                      >
+                        Delete
+                      </button>
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+</main>

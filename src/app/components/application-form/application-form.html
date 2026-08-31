@@ -1,0 +1,365 @@
+<main class="container py-5">
+
+  <div class="form-wrapper">
+
+    <!-- ==================== HEADER ==================== -->
+    <div class="mb-4">
+
+      <h1 class="fw-bold mb-2">
+        {{ isEditMode ? 'Edit Application' : 'Add Application' }}
+      </h1>
+
+      <p class="text-muted mb-0">
+        {{
+          isEditMode
+            ? 'Update your job or internship application details.'
+            : 'Add a new job or internship application.'
+        }}
+      </p>
+
+    </div>
+
+
+    <!-- ==================== FORM ==================== -->
+    <form
+      [formGroup]="applicationForm"
+      (ngSubmit)="submitApplication()"
+      novalidate
+    >
+
+      <!-- ==================== COMPANY ==================== -->
+      <div class="mb-3">
+
+        <label
+          for="company"
+          class="form-label fw-semibold"
+        >
+          Company Name
+        </label>
+
+        <input
+          id="company"
+          type="text"
+          class="form-control"
+          formControlName="company"
+          placeholder="e.g. Google"
+        />
+
+        @if (
+          applicationForm.controls.company.touched &&
+          applicationForm.controls.company.invalid
+        ) {
+
+          <div class="text-danger small mt-1">
+            Company name is required.
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- ==================== JOB ROLE ==================== -->
+      <div class="mb-3">
+
+        <label
+          for="role"
+          class="form-label fw-semibold"
+        >
+          Job Role
+        </label>
+
+        <input
+          id="role"
+          type="text"
+          class="form-control"
+          formControlName="role"
+          placeholder="e.g. Frontend Developer"
+        />
+
+        @if (
+          applicationForm.controls.role.touched &&
+          applicationForm.controls.role.invalid
+        ) {
+
+          <div class="text-danger small mt-1">
+            Job role is required.
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- ==================== LOCATION ==================== -->
+      <div class="mb-3">
+
+        <label
+          for="location"
+          class="form-label fw-semibold"
+        >
+          Location
+        </label>
+
+        <input
+          id="location"
+          type="text"
+          class="form-control"
+          formControlName="location"
+          placeholder="e.g. Ahmedabad"
+        />
+
+        @if (
+          applicationForm.controls.location.touched &&
+          applicationForm.controls.location.invalid
+        ) {
+
+          <div class="text-danger small mt-1">
+            Location is required.
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- ==================== APPLICATION TYPE ==================== -->
+      <div class="mb-3">
+
+        <label
+          for="type"
+          class="form-label fw-semibold"
+        >
+          Application Type
+        </label>
+
+        <select
+          id="type"
+          class="form-select"
+          formControlName="type"
+        >
+
+          <option value="Internship">
+            Internship
+          </option>
+
+          <option value="Full-time">
+            Full-time
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ==================== APPLICATION STATUS ==================== -->
+      <div class="mb-3">
+
+        <label
+          for="status"
+          class="form-label fw-semibold"
+        >
+          Application Status
+        </label>
+
+        <select
+          id="status"
+          class="form-select"
+          formControlName="status"
+        >
+
+          <option value="Applied">
+            Applied
+          </option>
+
+          <option value="Interview">
+            Interview
+          </option>
+
+          <option value="Selected">
+            Selected
+          </option>
+
+          <option value="Rejected">
+            Rejected
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ==================== INTERVIEW DETAILS ==================== -->
+      @if (
+        applicationForm.controls.status.value === 'Interview'
+      ) {
+
+        <div class="border rounded p-4 mb-4 bg-light">
+
+          <h5 class="fw-bold mb-2">
+            Interview Details
+          </h5>
+
+          <p class="text-muted small mb-4">
+            Add details about your upcoming interview.
+          </p>
+
+
+          <!-- Interview Date -->
+          <div class="mb-3">
+
+            <label
+              for="interviewDate"
+              class="form-label fw-semibold"
+            >
+              Interview Date
+            </label>
+
+            <input
+              id="interviewDate"
+              type="date"
+              class="form-control"
+              formControlName="interviewDate"
+            />
+
+          </div>
+
+
+          <!-- Interview Time -->
+          <div class="mb-3">
+
+            <label
+              for="interviewTime"
+              class="form-label fw-semibold"
+            >
+              Interview Time
+            </label>
+
+            <input
+              id="interviewTime"
+              type="time"
+              class="form-control"
+              formControlName="interviewTime"
+            />
+
+          </div>
+
+
+          <!-- Interview Mode -->
+          <div class="mb-3">
+
+            <label
+              for="interviewMode"
+              class="form-label fw-semibold"
+            >
+              Interview Mode
+            </label>
+
+            <select
+              id="interviewMode"
+              class="form-select"
+              formControlName="interviewMode"
+            >
+
+              <option value="">
+                Select interview mode
+              </option>
+
+              <option value="Online">
+                Online
+              </option>
+
+              <option value="Offline">
+                Offline
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Interview Notes -->
+          <div>
+
+            <label
+              for="interviewNotes"
+              class="form-label fw-semibold"
+            >
+              Interview Notes
+            </label>
+
+            <textarea
+              id="interviewNotes"
+              class="form-control"
+              formControlName="interviewNotes"
+              rows="4"
+              placeholder="Add interview preparation notes..."
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      }
+
+
+      <!-- ==================== APPLIED DATE ==================== -->
+      <div class="mb-4">
+
+        <label
+          for="appliedDate"
+          class="form-label fw-semibold"
+        >
+          Applied Date
+        </label>
+
+        <input
+          id="appliedDate"
+          type="date"
+          class="form-control"
+          formControlName="appliedDate"
+        />
+
+        @if (
+          applicationForm.controls.appliedDate.touched &&
+          applicationForm.controls.appliedDate.invalid
+        ) {
+
+          <div class="text-danger small mt-1">
+            Applied date is required.
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- ==================== BUTTONS ==================== -->
+      <div class="d-flex justify-content-end gap-2">
+
+        <!-- Cancel -->
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="btn btn-dark"
+          [disabled]="applicationForm.invalid"
+        >
+          {{ isEditMode ? 'Save Changes' : 'Add Application' }}
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</main>
